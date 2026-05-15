@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mapa de Calor del Dolor — Corsair Connect</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #f4f1ec;
+    color: #1a1a1a;
+    padding: 40px 20px 80px;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .form-header {
+    margin-bottom: 40px;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 24px;
+  }
+  .form-header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .form-header p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  /* SCALE REFERENCE */
+  .scale-ref {
+    background: #fff;
+    border: 1px solid #d0c9bc;
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 13px;
+  }
+  .scale-ref strong {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    color: #888;
+  }
+  .scale-ref-row {
+    display: flex;
+    gap: 0;
+    border: 1px solid #d0c9bc;
+  }
+  .scale-ref-cell {
+    flex: 1;
+    padding: 8px 6px;
+    text-align: center;
+    border-right: 1px solid #d0c9bc;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .scale-ref-cell:last-child { border-right: none; }
+  .scale-ref-num { font-size: 18px; font-weight: bold; display: block; }
+  .s1 .scale-ref-num { color: #3a7a1a; }
+  .s2 .scale-ref-num { color: #5a9a2a; }
+  .s3 .scale-ref-num { color: #c47a00; }
+  .s4 .scale-ref-num { color: #c44a00; }
+  .s5 .scale-ref-num { color: #b02020; }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 50px;
+  }
+  .section-header {
+    padding: 16px 20px;
+    border-left: 4px solid #1a1a1a;
+    margin-bottom: 24px;
+  }
+  .section-header h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .section-header p {
+    font-size: 13px;
+    color: #666;
+  }
+  .section-header .hormozi-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .hz-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border: 1px solid #aaa;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+
+  .sec-a .section-header { border-left-color: #b02020; }
+  .sec-b .section-header { border-left-color: #185a9a; }
+  .sec-c .section-header { border-left-color: #2a6a10; }
+  .sec-d .section-header { border-left-color: #b05a00; }
+
+  /* QUESTION */
+  .question {
+    background: #fff;
+    border: 1px solid #d0c9bc;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .question-label {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .question-code {
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    color: #999;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .question-hook {
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    border-left: 2px solid #ddd;
+    padding-left: 10px;
+  }
+
+  /* SCALE BUTTONS */
+  .scale-instruction {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #999;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+  }
+  .scale-buttons {
+    display: flex;
+    gap: 0;
+    border: 1px solid #d0c9bc;
+    width: fit-content;
+  }
+  .scale-btn {
+    width: 52px;
+    height: 48px;
+    border: none;
+    border-right: 1px solid #d0c9bc;
+    background: #f4f1ec;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    transition: background 0.1s;
+  }
+  .scale-btn:last-child { border-right: none; }
+  .scale-btn:hover { background: #e8e3da; }
+  .scale-btn.sel-1 { background: #d8f0c0; color: #2a5a0a; }
+  .scale-btn.sel-2 { background: #c0e890; color: #2a5a0a; }
+  .scale-btn.sel-3 { background: #ffe8a0; color: #7a4a00; }
+  .scale-btn.sel-4 { background: #ffc880; color: #8a2a00; }
+  .scale-btn.sel-5 { background: #ffb0b0; color: #8a1010; }
+  .scale-desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
+    font-style: italic;
+    min-height: 18px;
+  }
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 260px;
+    font-size: 10px;
+    color: #aaa;
+    margin-top: 4px;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* BUCKET */
+  .bucket {
+    background: #fff;
+    border: 1px dashed #bbb;
+    padding: 20px;
+    margin-top: 8px;
+  }
+  .bucket label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .bucket small {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .bucket textarea {
+    width: 100%;
+    min-height: 70px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    border: 1px solid #d0c9bc;
+    background: #f9f7f3;
+    color: #1a1a1a;
+    resize: vertical;
+  }
+  .bucket textarea:focus { outline: 2px solid #1a1a1a; }
+
+  /* ONE THING */
+  .one-thing {
+    background: #1a1a1a;
+    color: #f4f1ec;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+  .one-thing h2 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .one-thing p {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .one-thing textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    background: #2e2e2e;
+    border: 1px solid #555;
+    color: #f4f1ec;
+    resize: vertical;
+  }
+  .one-thing textarea:focus { outline: 2px solid #f4f1ec; }
+  .one-thing textarea::placeholder { color: #666; }
+  .one-thing small {
+    display: block;
+    font-size: 11px;
+    color: #666;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* CLOSENESS */
+  .closeness {
+    background: #fff;
+    border: 1px solid #d0c9bc;
+    padding: 20px;
+    margin-bottom: 32px;
+  }
+  .closeness label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 14px;
+  }
+  .closeness-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .closeness-btn {
+    padding: 10px 16px;
+    border: 1px solid #d0c9bc;
+    background: #f4f1ec;
+    text-align: left;
+    font-size: 13px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  .closeness-btn:hover { background: #e8e3da; }
+  .closeness-btn.sel { background: #1a1a1a; color: #f4f1ec; border-color: #1a1a1a; }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: #1a1a1a;
+    color: #f4f1ec;
+    border: none;
+    font-size: 15px;
+    font-family: Georgia, serif;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background 0.15s;
+  }
+  .submit-btn:hover { background: #333; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid #d0c9bc;
+    margin: 40px 0;
+  }
+
+  @media (max-width: 480px) {
+    .scale-buttons { flex-wrap: nowrap; }
+    .scale-btn { width: 44px; height: 44px; font-size: 14px; }
+    .scale-labels { width: 220px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <h1>Mapa de Calor del Dolor<br>Corsair Connect</h1>
+    <p>Para cada problema, marca cuanto te frena realmente.<br>No hay respuestas correctas. La respuesta mas honesta es la mas util. Menos de 5 minutos.</p>
+  </div>
+
+  <!-- SCALE REFERENCE -->
+  <div class="scale-ref">
+    <strong>Escala de referencia</strong>
+    <div class="scale-ref-row">
+      <div class="scale-ref-cell s1"><span class="scale-ref-num">1</span>Duda pequeña</div>
+      <div class="scale-ref-cell s2"><span class="scale-ref-num">2</span>Me ralentiza</div>
+      <div class="scale-ref-cell s3"><span class="scale-ref-num">3</span>Freno importante</div>
+      <div class="scale-ref-cell s4"><span class="scale-ref-num">4</span>Me paraliza</div>
+      <div class="scale-ref-cell s5"><span class="scale-ref-num">5</span>Abandono total</div>
+    </div>
+  </div>
+
+  <!-- SECTION A -->
+  <div class="section sec-a">
+    <div class="section-header">
+      <h2>A — Dudas sobre el modelo y la legalidad</h2>
+      <p>Si el negocio es legitimo, legal y transparente</p>
+      <div class="hormozi-tags">
+        <span class="hz-tag">Probabilidad de logro</span>
+        <span class="hz-tag">Resultado ideal</span>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">A1</span>
+      <p class="question-label">"He buscado en internet y dicen que es una estafa"</p>
+      <p class="question-hook">Este problema no solo genera duda en ti — hace que tus contactos tampoco confien cuando tu les presentas el negocio. Es el problema con mayor efecto multiplicador negativo.</p>
+      <div class="scale-instruction">Cuanto te frena — marca tu nivel</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'a1')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'a1')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'a1')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'a1')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'a1')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-a1"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">A2</span>
+      <p class="question-label">"¿Esto es como Herbalife? ¿Es un esquema piramidal?"</p>
+      <p class="question-hook">La primera asociacion mental del avatar al escuchar "red de afiliados" es MLM o piramide. Esta creencia bloquea la escucha y hace imposible que vean el valor real del modelo.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'a2')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'a2')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'a2')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'a2')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'a2')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-a2"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">A3</span>
+      <p class="question-label">"¿Puedo perder mi dinero? ¿Que pasa si la empresa cierra?"</p>
+      <p class="question-hook">El avatar tiene hijos y obligaciones. No puede permitirse una perdida. Aunque el monto sea pequeno, la pregunta de riesgo financiero activa un nivel de alerta que paraliza la decision.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'a3')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'a3')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'a3')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'a3')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'a3')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-a3"></div>
+    </div>
+
+    <div class="bucket">
+      <label>Cubo de basura — Modelo y legalidad</label>
+      <small>¿Que otra duda sobre la legitimidad del negocio te quita el sueno y no hemos mencionado?</small>
+      <textarea placeholder="Escribe con total libertad..."></textarea>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION B -->
+  <div class="section sec-b">
+    <div class="section-header">
+      <h2>B — Barreras tecnicas y operativas</h2>
+      <p>Usar la plataforma, cobrar comisiones y gestionar el negocio</p>
+      <div class="hormozi-tags">
+        <span class="hz-tag">Esfuerzo y sacrificio</span>
+        <span class="hz-tag">Tiempo al resultado</span>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">B1</span>
+      <p class="question-label">"No entiendo como comprar paquetes en Corsair Connect ni como funciona el pago con USDC"</p>
+      <p class="question-hook">El proceso tecnico de compra filtra a casi todo el avatar de 40-55 anos. Si tus contactos tampoco pueden comprar solos, el sistema muere en este punto.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'b1')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'b1')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'b1')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'b1')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'b1')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-b1"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">B2</span>
+      <p class="question-label">"No se como retirar mi dinero. No entiendo donde estan mis comisiones ni como cobrarlas"</p>
+      <p class="question-hook">Si el dinero esta en "algun sitio" pero no sabes como sacarlo a tu cuenta bancaria, el resultado sonado se vuelve abstracto. Es el mayor destructor de credibilidad una vez que ya has vendido.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'b2')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'b2')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'b2')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'b2')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'b2')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-b2"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">B3</span>
+      <p class="question-label">"Me siento perdido en la plataforma — no se que pasos seguir, que hacer primero ni como avanzar"</p>
+      <p class="question-hook">Sin un camino claro, el avatar no tiene tiempo de explorar. Necesita saber exactamente que hacer en los proximos 10 minutos. Sin esto, cierra la app y no vuelve.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'b3')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'b3')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'b3')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'b3')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'b3')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-b3"></div>
+    </div>
+
+    <div class="bucket">
+      <label>Cubo de basura — Tecnica y operativa</label>
+      <small>¿Que otra barrera tecnica te quita el sueno y no hemos mencionado? Puede ser algo muy concreto.</small>
+      <textarea placeholder="Un boton que no funciona, un paso que no entiendes, algo que nadie te explico..."></textarea>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION C -->
+  <div class="section sec-c">
+    <div class="section-header">
+      <h2>C — Dudas sobre los creditos de plastico (CSR26)</h2>
+      <p>Que son, si tienen valor real y como usarlos o venderlos</p>
+      <div class="hormozi-tags">
+        <span class="hz-tag">Resultado ideal</span>
+        <span class="hz-tag">Probabilidad de logro</span>
+        <span class="hz-tag">Tiempo al resultado</span>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">C1</span>
+      <p class="question-label">"¿A quien le vendo mis CSR26? ¿Hay un mercado real o me los quedo para siempre?"</p>
+      <p class="question-hook">Si no existe certeza sobre un comprador real o un mercado accesible, el activo que tienes en tu wallet es percibido como papel mojado. Este es el mayor destructor del resultado percibido.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'c1')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'c1')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'c1')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'c1')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'c1')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-c1"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">C2</span>
+      <p class="question-label">"¿Se elimina el plastico de verdad? ¿Como se que no es un invento para justificar el negocio?"</p>
+      <p class="question-hook">Si el servicio subyacente no es verificable, todo el modelo se percibe como especulativo. Es tambien el argumento mas dificil de rebatir ante los contactos que preguntan.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'c2')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'c2')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'c2')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'c2')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'c2')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-c2"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">C3</span>
+      <p class="question-label">"¿Cuando puedo vender mis CSR26? ¿Hay bloqueo temporal? ¿Cuanto tengo que esperar para recuperar mi dinero?"</p>
+      <p class="question-hook">El avatar no puede permitirse inversiones a largo plazo con fecha incierta. Cualquier ambiguedad sobre la liquidez convierte el activo en una trampa percibida, no en una oportunidad.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'c3')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'c3')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'c3')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'c3')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'c3')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-c3"></div>
+    </div>
+
+    <div class="bucket">
+      <label>Cubo de basura — Creditos CSR26</label>
+      <small>¿Que otra duda sobre los creditos de plastico o el servicio de eliminacion te quita el sueno?</small>
+      <textarea placeholder="Puede ser algo que nadie te ha respondido satisfactoriamente sobre los CSR26..."></textarea>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION D -->
+  <div class="section sec-d">
+    <div class="section-header">
+      <h2>D — Capacidad personal y social</h2>
+      <p>Creencias sobre tu propia capacidad de vender, explicar y convencer a otros</p>
+      <div class="hormozi-tags">
+        <span class="hz-tag">Esfuerzo y sacrificio</span>
+        <span class="hz-tag">Probabilidad de logro</span>
+      </div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">D1</span>
+      <p class="question-label">"Yo no se vender. Me da verguenza hablar de dinero o de negocios. Tengo miedo al rechazo."</p>
+      <p class="question-hook">Esta es la creencia limitante mas frecuente y mas dificil de resolver con formacion. No es un problema de informacion — es identitario. El avatar no se ve a si mismo como alguien que vende.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'d1')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'d1')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'d1')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'d1')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'d1')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-d1"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">D2</span>
+      <p class="question-label">"No se como explicar el negocio. Cuando lo intento, la gente no lo entiende o me dice que no le interesa."</p>
+      <p class="question-hook">Si el afiliado no puede articular el valor con sus propias palabras, depende al 100% de que el contacto vea el video. La incapacidad de explicarlo genera tambien verguenza que paraliza mas contactos futuros.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'d2')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'d2')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'d2')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'d2')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'d2')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-d2"></div>
+    </div>
+
+    <div class="question">
+      <span class="question-code">D3</span>
+      <p class="question-label">"No tengo dinero para invertir ni para comprar el paquete minimo. Necesito ganar dinero antes de poder gastar."</p>
+      <p class="question-hook">Mas alla del dinero, este problema esconde una creencia mas profunda: "si no invierto mas, no podre ganar en serio". Romper esto es clave para la activacion.</p>
+      <div class="scale-instruction">Cuanto te frena</div>
+      <div class="scale-buttons">
+        <button class="scale-btn" onclick="pick(this,'d3')" data-v="1">1</button>
+        <button class="scale-btn" onclick="pick(this,'d3')" data-v="2">2</button>
+        <button class="scale-btn" onclick="pick(this,'d3')" data-v="3">3</button>
+        <button class="scale-btn" onclick="pick(this,'d3')" data-v="4">4</button>
+        <button class="scale-btn" onclick="pick(this,'d3')" data-v="5">5</button>
+      </div>
+      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="scale-desc" id="d-d3"></div>
+    </div>
+
+    <div class="bucket">
+      <label>Cubo de basura — Capacidad personal</label>
+      <small>¿Que creencia sobre ti mismo o tu entorno te impide avanzar y no hemos mencionado aqui?</small>
+      <textarea placeholder="Puede ser algo que sientes pero que nunca has verbalizado sobre por que esto no funcionara para alguien como tu..."></textarea>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ONE THING -->
+  <div class="one-thing">
+    <h2>Si manana hicieramos una videollamada para solucionar solo UN problema que te impide ganar tus primeros $600... ¿cual seria?</h2>
+    <p>Lo primero que venga a tu cabeza es lo correcto. No tiene que ser racional. Puede ser un miedo, una duda, un bloqueo o algo que no has podido resolver solo.</p>
+    <textarea placeholder="Escribe aqui tu unica cosa..."></textarea>
+    <small>Esta respuesta es la mas importante de todo el formulario.</small>
+  </div>
+
+  <!-- CLOSENESS -->
+  <div class="closeness">
+    <label>Antes de terminar — ¿como de cerca estas de ganar tus primeros $600?</label>
+    <div class="closeness-options">
+      <button class="closeness-btn" onclick="pickClose(this)">No he empezado todavia</button>
+      <button class="closeness-btn" onclick="pickClose(this)">Empece pero me estanque</button>
+      <button class="closeness-btn" onclick="pickClose(this)">Estoy en proceso activo</button>
+      <button class="closeness-btn" onclick="pickClose(this)">Ya casi lo consigo</button>
+    </div>
+  </div>
+
+  <button class="submit-btn" onclick="submitForm()">Enviar respuestas</button>
+
+</div>
+
+<script>
+const DESCS = {
+  1: "Duda pequena — no te impide avanzar",
+  2: "Te ralentiza un poco",
+  3: "Freno importante — vas mas despacio",
+  4: "Te paraliza casi por completo",
+  5: "FRENO TOTAL — esto te haria abandonar"
+};
+
+function pick(btn, id) {
+  const v = parseInt(btn.dataset.v);
+  const parent = btn.closest('.scale-buttons');
+  parent.querySelectorAll('.scale-btn').forEach(b => {
+    b.classList.remove('sel-1','sel-2','sel-3','sel-4','sel-5');
+  });
+  btn.classList.add('sel-' + v);
+  const desc = document.getElementById('d-' + id);
+  if (desc) desc.textContent = DESCS[v];
+}
+
+function pickClose(btn) {
+  document.querySelectorAll('.closeness-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+
+function submitForm() {
+  alert('Respuestas enviadas. Gracias por tu tiempo.');
+}
+</script>
+</body>
+</html>
