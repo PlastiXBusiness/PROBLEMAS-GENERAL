@@ -1,4 +1,6 @@
+Aquí tienes el código HTML completo con las últimas modificaciones aplicadas. He eliminado la sección de la cercanía y he simplificado la pregunta final para que se enfoque directamente en descubrir cuál es su mayor obstáculo en este momento, sin hacer mención a objetivos o retos que todavía no conocen.
 
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -107,7 +109,7 @@ body {
 .bucket textarea::placeholder { color: #aaa; }
 
 /* ONE THING */
-.one-thing { background: #1a1a1a; color: #f4f1ec; padding: 28px; margin-bottom: 24px; }
+.one-thing { background: #1a1a1a; color: #f4f1ec; padding: 28px; margin-bottom: 32px; }
 .one-thing h2 { font-size: 19px; font-weight: normal; line-height: 1.5; margin-bottom: 10px; }
 .one-thing p { font-size: 13px; color: #aaa; margin-bottom: 16px; line-height: 1.6; }
 .one-thing textarea {
@@ -119,19 +121,6 @@ body {
 .one-thing textarea:focus { outline: 2px solid #f4f1ec; }
 .one-thing textarea::placeholder { color: #666; }
 .one-thing small { display: block; font-size: 11px; color: #666; margin-top: 8px; font-style: italic; }
-
-/* CLOSENESS */
-.closeness { background: #fff; border: 1px solid #d0c9bc; padding: 20px; margin-bottom: 32px; }
-.closeness label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 14px; color: #1a1a1a; }
-.closeness-list { display: flex; flex-direction: column; gap: 8px; }
-.closeness-btn {
-  padding: 10px 16px; border: 1px solid #d0c9bc; background: #f4f1ec;
-  text-align: left; font-size: 13px; font-family: Georgia, serif;
-  cursor: pointer; transition: background 0.1s; color: #1a1a1a;
-  -webkit-appearance: none; display: block; width: 100%;
-}
-.closeness-btn:hover { background: #e8e3da; }
-.closeness-btn.sel { background: #1a1a1a; color: #f4f1ec; border-color: #1a1a1a; }
 
 /* SUBMIT */
 .submit-btn {
@@ -438,21 +427,10 @@ body {
 
   <!-- ONE THING -->
   <div class="one-thing">
-    <h2>Si mañana hiciéramos una videollamada para solucionar solo UN problema que te impide ganar tus primeros $600... ¿cuál sería?</h2>
-    <p>Lo primero que venga a tu cabeza es lo correcto. No tiene que ser racional. Puede ser un miedo, una duda, un bloqueo o algo que no has podido resolver solo.</p>
-    <textarea id="one_thing" placeholder="Escribe aquí tu única cosa..."></textarea>
+    <h2>Si mañana hiciéramos una videollamada para solucionar solo UN problema que te impide avanzar... ¿cuál sería?</h2>
+    <p>Lo primero que venga a tu cabeza es lo correcto. No tiene que ser racional. Puede ser un miedo, una duda, un bloqueo o algo específico que no has podido resolver por tu cuenta.</p>
+    <textarea id="one_thing" placeholder="Escribe aquí tu mayor problema o duda..."></textarea>
     <small>Esta respuesta es la más importante de todo el formulario.</small>
-  </div>
-
-  <!-- CLOSENESS -->
-  <div class="closeness">
-    <label>Antes de terminar — ¿cómo de cerca estás de ganar tus primeros $600?</label>
-    <div class="closeness-list">
-      <button class="closeness-btn" onclick="pickClose(this)">No he empezado todavía</button>
-      <button class="closeness-btn" onclick="pickClose(this)">Empecé pero me estanqué</button>
-      <button class="closeness-btn" onclick="pickClose(this)">Estoy en proceso activo</button>
-      <button class="closeness-btn" onclick="pickClose(this)">Ya casi lo consigo</button>
-    </div>
   </div>
 
   <button class="submit-btn" id="submitBtn" onclick="enviar()">Enviar mis respuestas</button>
@@ -491,12 +469,6 @@ function pick(btn, id, v) {
   if (desc) desc.textContent = SCALE_LABELS[v];
   // Guardar el texto, no el número
   R[id] = SCALE_LABELS[v];
-}
-
-function pickClose(btn) {
-  document.querySelectorAll('.closeness-btn').forEach(b => b.classList.remove('sel'));
-  btn.classList.add('sel');
-  R['cercania_objetivo'] = btn.textContent.trim();
 }
 
 function collectTextFields() {
