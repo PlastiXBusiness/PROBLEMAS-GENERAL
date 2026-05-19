@@ -1,3 +1,6 @@
+Aquí tienes el código HTML completo y limpio. He eliminado todas las subfrases explicativas (`q-hook`), las etiquetas de dimensiones (`q-dims` que contenían Probabilidad, Resultado, Esfuerzo, Tiempo, etc.) y he simplificado las secciones de los "cubos de basura" dejando únicamente la etiqueta limpia con la pregunta directa, tal como me has pedido.
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -71,13 +74,6 @@ body {
 .q { background: #fff; border: 1px solid #d0c9bc; padding: 20px; margin-bottom: 14px; }
 .q-code { font-size: 10px; font-family: 'Courier New', monospace; color: #bbb; display: block; margin-bottom: 6px; }
 .q-text { font-size: 14px; font-weight: bold; line-height: 1.5; margin-bottom: 6px; color: #1a1a1a; }
-.q-hook { font-size: 12px; color: #777; font-style: italic; margin-bottom: 14px; line-height: 1.5; border-left: 2px solid #ddd; padding-left: 10px; }
-.q-dims { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
-.q-dim { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
-.dim-ri { background: #FCEBEB; color: #A32D2D; }
-.dim-pr { background: #FAEEDA; color: #854F0B; }
-.dim-ti { background: #E6F1FB; color: #185FA5; }
-.dim-es { background: #EAF3DE; color: #3B6D11; }
 
 /* INTENSITY BUTTONS */
 .int-label { font-size: 10px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
@@ -102,8 +98,7 @@ body {
 
 /* BUCKET */
 .bucket { background: #fff; border: 1px dashed #bbb; padding: 20px; margin-top: 8px; }
-.bucket label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 4px; color: #1a1a1a; }
-.bucket small { display: block; font-size: 12px; color: #888; font-style: italic; margin-bottom: 10px; }
+.bucket label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 10px; color: #1a1a1a; }
 .bucket textarea {
   width: 100%; min-height: 70px; padding: 10px 12px;
   font-size: 13px; font-family: Georgia, serif;
@@ -200,11 +195,6 @@ body {
     <div class="q">
       <span class="q-code">A1</span>
       <p class="q-text">"He buscado en internet y dicen que es una estafa"</p>
-      <p class="q-hook">Este problema no solo genera dudas en ti, sino que hace que tus contactos tampoco confíen cuando les presentas el negocio. Es la barrera con mayor efecto multiplicador negativo.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-pr">Probabilidad</span>
-        <span class="q-dim dim-ri">Resultado</span>
-      </div>
       <div class="int-label">Cuánto te frena — marca tu nivel</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'a1',1)">1</button>
@@ -220,11 +210,6 @@ body {
     <div class="q">
       <span class="q-code">A2</span>
       <p class="q-text">"¿Esto es como Herbalife? ¿Es un esquema piramidal?"</p>
-      <p class="q-hook">La primera asociación mental de la gente al escuchar "red de afiliados" suele ser un modelo MLM o piramidal. Esta creencia bloquea la escucha y dificulta que vean el valor real del modelo.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-pr">Probabilidad</span>
-        <span class="q-dim dim-es">Esfuerzo mental</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'a2',1)">1</button>
@@ -240,11 +225,6 @@ body {
     <div class="q">
       <span class="q-code">A3</span>
       <p class="q-text">"¿Puedo perder mi dinero? ¿Qué pasa si la empresa cierra?"</p>
-      <p class="q-hook">Cuando se tienen responsabilidades y obligaciones familiares, no es fácil permitirse una pérdida. Aunque el monto sea pequeño, el temor al riesgo financiero activa una alerta que paraliza la decisión.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-ri">Resultado</span>
-        <span class="q-dim dim-pr">Probabilidad</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'a3',1)">1</button>
@@ -258,8 +238,7 @@ body {
     </div>
 
     <div class="bucket">
-      <label>Cubo de basura — Modelo y legalidad</label>
-      <small>¿Qué otra duda sobre la legitimidad del negocio te quita el sueño y no hemos mencionado?</small>
+      <label>¿Qué otra duda sobre la legitimidad del negocio te quita el sueño y no hemos mencionado?</label>
       <textarea id="bucket_a" placeholder="Escribe con total libertad..."></textarea>
     </div>
   </div>
@@ -280,11 +259,6 @@ body {
     <div class="q">
       <span class="q-code">B1</span>
       <p class="q-text">"No entiendo cómo comprar paquetes en Corsair Connect ni cómo funciona el pago con USDC"</p>
-      <p class="q-hook">El proceso técnico de compra suele suponer una barrera importante debido a la complejidad de las criptomonedas. Si resulta difícil comprar de forma autónoma, el avance se detiene por completo en este punto.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-es">Esfuerzo</span>
-        <span class="q-dim dim-ti">Tiempo</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'b1',1)">1</button>
@@ -300,11 +274,6 @@ body {
     <div class="q">
       <span class="q-code">B2</span>
       <p class="q-text">"No sé cómo retirar mi dinero. No entiendo dónde están mis comisiones ni cómo cobrarlas"</p>
-      <p class="q-hook">Si las comisiones están acumuladas en la plataforma pero no queda claro cómo enviarlas a la cuenta bancaria, el beneficio se percibe como algo abstracto e intangible, restando credibilidad al esfuerzo realizado.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-es">Esfuerzo</span>
-        <span class="q-dim dim-ri">Resultado</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'b2',1)">1</button>
@@ -320,12 +289,6 @@ body {
     <div class="q">
       <span class="q-code">B3</span>
       <p class="q-text">"Me siento perdido en la plataforma — no sé qué pasos seguir, qué hacer primero ni cómo avanzar"</p>
-      <p class="q-hook">Cuando el tiempo es limitado, no se puede perder explorando sin rumbo. Es fundamental saber con exactitud qué acción tomar en cada momento para no acabar cerrando la aplicación por frustración.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-ti">Tiempo</span>
-        <span class="q-dim dim-es">Esfuerzo</span>
-        <span class="q-dim dim-pr">Probabilidad</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'b3',1)">1</button>
@@ -339,8 +302,7 @@ body {
     </div>
 
     <div class="bucket">
-      <label>Cubo de basura — Técnica y operativa</label>
-      <small>¿Qué otra barrera técnica te quita el sueño y no hemos mencionado?</small>
+      <label>¿Qué otra barrera técnica te quita el sueño y no hemos mencionado?</label>
       <textarea id="bucket_b" placeholder="Un botón que no funciona, un paso que no entiendes, algo que nadie te explicó..."></textarea>
     </div>
   </div>
@@ -362,11 +324,6 @@ body {
     <div class="q">
       <span class="q-code">C1</span>
       <p class="q-text">"¿A quién le vendo mis CSR26? ¿Hay un mercado real o me los quedo para siempre?"</p>
-      <p class="q-hook">Si no existe la certeza de contar con un comprador real o un mercado accesible, el activo digital de la billetera puede llegar a verse como algo sin valor real, debilitando la confianza en la rentabilidad.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-ri">Resultado</span>
-        <span class="q-dim dim-pr">Probabilidad</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'c1',1)">1</button>
@@ -382,11 +339,6 @@ body {
     <div class="q">
       <span class="q-code">C2</span>
       <p class="q-text">"¿Se elimina el plástico de verdad? ¿Cómo sé que no es un invento para justificar el negocio?"</p>
-      <p class="q-hook">Si el servicio subyacente no parece fácil de verificar, el modelo puede percibirse como puramente especulativo, convirtiéndose además en el argumento más complejo de rebatir ante preguntas de conocidos.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-pr">Probabilidad</span>
-        <span class="q-dim dim-ri">Resultado</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'c2',1)">1</button>
@@ -402,11 +354,6 @@ body {
     <div class="q">
       <span class="q-code">C3</span>
       <p class="q-text">"¿Cuándo puedo vender mis CSR26? ¿Hay bloqueo temporal? ¿Cuánto tengo que esperar para recuperar mi dinero?"</p>
-      <p class="q-hook">No siempre es viable realizar inversiones a largo plazo con plazos difusos. Cualquier falta de claridad respecto a la liquidez puede hacer que la oportunidad se perciba con desconfianza o como una retención indebida.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-ti">Tiempo</span>
-        <span class="q-dim dim-ri">Resultado</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'c3',1)">1</button>
@@ -420,8 +367,7 @@ body {
     </div>
 
     <div class="bucket">
-      <label>Cubo de basura — Créditos CSR26</label>
-      <small>¿Qué otra duda sobre los créditos de plástico o el servicio de eliminación te quita el sueño?</small>
+      <label>¿Qué otra duda sobre los créditos de plástico o el servicio de eliminación te quita el sueño?</label>
       <textarea id="bucket_c" placeholder="Puede ser algo que nadie te ha respondido satisfactoriamente sobre los CSR26..."></textarea>
     </div>
   </div>
@@ -442,11 +388,6 @@ body {
     <div class="q">
       <span class="q-code">D1</span>
       <p class="q-text">"Yo no sé vender. Me da vergüenza hablar de dinero o de negocios. Tengo miedo al rechazo."</p>
-      <p class="q-hook">Esta es una de las barreras más comunes y no se soluciona únicamente con teoría, ya que afecta directamente a la confianza personal al no verse uno mismo desempeñando un rol comercial.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-es">Esfuerzo emocional</span>
-        <span class="q-dim dim-pr">Probabilidad</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'d1',1)">1</button>
@@ -462,12 +403,6 @@ body {
     <div class="q">
       <span class="q-code">D2</span>
       <p class="q-text">"No sé cómo explicar el negocio. Cuando lo intento, la gente no lo entiende o me dice que no le interesa."</p>
-      <p class="q-hook">Si cuesta estructurar el valor del proyecto con palabras propias, se acaba dependiendo por completo de herramientas externas. Además, no lograr transmitir la idea genera un freno que dificulta contactar a más personas.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-es">Esfuerzo</span>
-        <span class="q-dim dim-pr">Probabilidad</span>
-        <span class="q-dim dim-ti">Tiempo</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'d2',1)">1</button>
@@ -483,11 +418,6 @@ body {
     <div class="q">
       <span class="q-code">D3</span>
       <p class="q-text">"No tengo dinero para invertir ni para comprar el paquete mínimo. Necesito ganar dinero antes de poder gastar."</p>
-      <p class="q-hook">Más allá de la situación económica, este obstáculo suele esconder una idea de fondo: el temor a que sin aportar un capital elevado no sea posible generar ingresos significativos.</p>
-      <div class="q-dims">
-        <span class="q-dim dim-ri">Resultado</span>
-        <span class="q-dim dim-pr">Probabilidad</span>
-      </div>
       <div class="int-label">Cuánto te frena</div>
       <div class="int-row">
         <button class="int-btn" onclick="pick(this,'d3',1)">1</button>
@@ -501,8 +431,7 @@ body {
     </div>
 
     <div class="bucket">
-      <label>Cubo de basura — Capacidad personal</label>
-      <small>¿Qué creencia sobre ti mismo o tu entorno te impide avanzar y no hemos mencionado aquí?</small>
+      <label>¿Qué creencia sobre ti mismo o tu entorno te impide avanzar y no hemos mencionado aquí?</label>
       <textarea id="bucket_d" placeholder="Puede ser algo que sientes pero que nunca has verbalizado sobre por qué esto no funcionará para alguien como tú..."></textarea>
     </div>
   </div>
