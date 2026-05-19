@@ -3,338 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Formulario CCE Probelmas Generales </title>
+<title>Formulario CCE — Problemas Generales </title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-fill-color: inherit;
+}
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  color: #1a1a1a;
+  border-radius: 0;
+}
+input, textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  color: #1a1a1a;
+  border-radius: 0;
+}
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #f4f1ec;
+  color: #1a1a1a;
+  padding: 40px 20px 80px;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 680px; margin: 0 auto; }
 
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    background: #f4f1ec;
-    color: #1a1a1a;
-    padding: 40px 20px 80px;
-  }
+/* HEADER */
+.form-header { margin-bottom: 40px; border-bottom: 2px solid #1a1a1a; padding-bottom: 24px; }
+.form-header h1 { font-size: 24px; font-weight: normal; line-height: 1.35; margin-bottom: 10px; color: #1a1a1a; }
+.form-header p { font-size: 13px; color: #666; line-height: 1.7; }
+.time-badge { display: inline-block; margin-top: 12px; font-size: 11px; font-family: 'Courier New', monospace; padding: 4px 10px; border: 1px solid #bbb; color: #888; }
 
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-  }
+/* ESCALA REFERENCIA */
+.scale-ref { background: #fff; border: 1px solid #d0c9bc; padding: 16px 20px; margin-bottom: 40px; }
+.scale-ref strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 10px; font-family: 'Courier New', monospace; }
+.scale-ref-row { display: flex; gap: 0; border: 1px solid #d0c9bc; }
+.scale-ref-cell { flex: 1; padding: 8px 4px; text-align: center; border-right: 1px solid #d0c9bc; font-size: 11px; line-height: 1.4; }
+.scale-ref-cell:last-child { border-right: none; }
+.scale-ref-num { font-size: 17px; font-weight: bold; display: block; }
+.s1 .scale-ref-num { color: #3a7a1a; }
+.s2 .scale-ref-num { color: #5a9a2a; }
+.s3 .scale-ref-num { color: #c47a00; }
+.s4 .scale-ref-num { color: #c44a00; }
+.s5 .scale-ref-num { color: #b02020; }
 
-  /* HEADER */
-  .form-header {
-    margin-bottom: 40px;
-    border-bottom: 2px solid #1a1a1a;
-    padding-bottom: 24px;
-  }
-  .form-header h1 {
-    font-size: 26px;
-    font-weight: normal;
-    letter-spacing: -0.5px;
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-  .form-header p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.7;
-  }
+/* SECTION */
+.section { margin-bottom: 50px; }
+.section-header { padding: 16px 20px; border-left: 4px solid #1a1a1a; margin-bottom: 24px; }
+.section-header h2 { font-size: 18px; font-weight: bold; margin-bottom: 4px; color: #1a1a1a; }
+.section-header p { font-size: 13px; color: #666; }
+.section-header .hz-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.hz-tag { font-size: 11px; padding: 2px 8px; border: 1px solid #aaa; color: #555; font-family: 'Courier New', monospace; }
 
-  /* SCALE REFERENCE */
-  .scale-ref {
-    background: #fff;
-    border: 1px solid #d0c9bc;
-    padding: 16px 20px;
-    margin-bottom: 40px;
-    font-size: 13px;
-  }
-  .scale-ref strong {
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
-    color: #888;
-  }
-  .scale-ref-row {
-    display: flex;
-    gap: 0;
-    border: 1px solid #d0c9bc;
-  }
-  .scale-ref-cell {
-    flex: 1;
-    padding: 8px 6px;
-    text-align: center;
-    border-right: 1px solid #d0c9bc;
-    font-size: 12px;
-    line-height: 1.4;
-  }
-  .scale-ref-cell:last-child { border-right: none; }
-  .scale-ref-num { font-size: 18px; font-weight: bold; display: block; }
-  .s1 .scale-ref-num { color: #3a7a1a; }
-  .s2 .scale-ref-num { color: #5a9a2a; }
-  .s3 .scale-ref-num { color: #c47a00; }
-  .s4 .scale-ref-num { color: #c44a00; }
-  .s5 .scale-ref-num { color: #b02020; }
+.sec-a .section-header { border-left-color: #b02020; }
+.sec-b .section-header { border-left-color: #185a9a; }
+.sec-c .section-header { border-left-color: #2a6a10; }
+.sec-d .section-header { border-left-color: #b05a00; }
 
-  /* SECTION */
-  .section {
-    margin-bottom: 50px;
-  }
-  .section-header {
-    padding: 16px 20px;
-    border-left: 4px solid #1a1a1a;
-    margin-bottom: 24px;
-  }
-  .section-header h2 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-  .section-header p {
-    font-size: 13px;
-    color: #666;
-  }
-  .section-header .hormozi-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
-  .hz-tag {
-    font-size: 11px;
-    padding: 2px 8px;
-    border: 1px solid #aaa;
-    color: #555;
-    font-family: 'Courier New', monospace;
-  }
+.divider { border: none; border-top: 1px solid #d0c9bc; margin: 40px 0; }
 
-  .sec-a .section-header { border-left-color: #b02020; }
-  .sec-b .section-header { border-left-color: #185a9a; }
-  .sec-c .section-header { border-left-color: #2a6a10; }
-  .sec-d .section-header { border-left-color: #b05a00; }
+/* QUESTION */
+.q { background: #fff; border: 1px solid #d0c9bc; padding: 20px; margin-bottom: 14px; }
+.q-code { font-size: 10px; font-family: 'Courier New', monospace; color: #bbb; display: block; margin-bottom: 6px; }
+.q-text { font-size: 14px; font-weight: bold; line-height: 1.5; margin-bottom: 6px; color: #1a1a1a; }
+.q-hook { font-size: 12px; color: #777; font-style: italic; margin-bottom: 14px; line-height: 1.5; border-left: 2px solid #ddd; padding-left: 10px; }
+.q-dims { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.q-dim { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+.dim-ri { background: #FCEBEB; color: #A32D2D; }
+.dim-pr { background: #FAEEDA; color: #854F0B; }
+.dim-ti { background: #E6F1FB; color: #185FA5; }
+.dim-es { background: #EAF3DE; color: #3B6D11; }
 
-  /* QUESTION */
-  .question {
-    background: #fff;
-    border: 1px solid #d0c9bc;
-    padding: 20px;
-    margin-bottom: 16px;
-  }
-  .question-label {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 6px;
-  }
-  .question-code {
-    font-size: 11px;
-    font-family: 'Courier New', monospace;
-    color: #999;
-    margin-bottom: 8px;
-    display: block;
-  }
-  .question-hook {
-    font-size: 12px;
-    color: #777;
-    font-style: italic;
-    margin-bottom: 14px;
-    line-height: 1.5;
-    border-left: 2px solid #ddd;
-    padding-left: 10px;
-  }
+/* INTENSITY BUTTONS */
+.int-label { font-size: 10px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; margin-bottom: 8px; }
+.int-row { display: flex; gap: 0; border: 1px solid #d0c9bc; width: fit-content; margin-bottom: 4px; }
+.int-btn {
+  width: 52px; height: 46px;
+  border: none; border-right: 1px solid #d0c9bc;
+  background: #f4f1ec;
+  font-size: 15px; font-weight: bold; font-family: Georgia, serif;
+  cursor: pointer; transition: background 0.1s;
+  color: #1a1a1a; -webkit-appearance: none;
+}
+.int-btn:last-child { border-right: none; }
+.int-btn:hover { background: #e8e3da; }
+.int-btn.v1 { background: #d8f0c0; color: #2a5a0a; }
+.int-btn.v2 { background: #c8e898; color: #2a5a0a; }
+.int-btn.v3 { background: #ffe8a0; color: #7a4a00; }
+.int-btn.v4 { background: #ffc880; color: #8a2a00; }
+.int-btn.v5 { background: #ffb0b0; color: #8a1010; }
+.int-ends { display: flex; justify-content: space-between; width: 260px; font-size: 10px; color: #aaa; font-family: 'Courier New', monospace; margin-bottom: 5px; }
+.int-desc { font-size: 12px; font-style: italic; min-height: 18px; color: #888; }
 
-  /* SCALE BUTTONS */
-  .scale-instruction {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: #999;
-    margin-bottom: 8px;
-    font-family: 'Courier New', monospace;
-  }
-  .scale-buttons {
-    display: flex;
-    gap: 0;
-    border: 1px solid #d0c9bc;
-    width: fit-content;
-  }
-  .scale-btn {
-    width: 52px;
-    height: 48px;
-    border: none;
-    border-right: 1px solid #d0c9bc;
-    background: #f4f1ec;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: Georgia, serif;
-    font-weight: bold;
-    transition: background 0.1s;
-  }
-  .scale-btn:last-child { border-right: none; }
-  .scale-btn:hover { background: #e8e3da; }
-  .scale-btn.sel-1 { background: #d8f0c0; color: #2a5a0a; }
-  .scale-btn.sel-2 { background: #c0e890; color: #2a5a0a; }
-  .scale-btn.sel-3 { background: #ffe8a0; color: #7a4a00; }
-  .scale-btn.sel-4 { background: #ffc880; color: #8a2a00; }
-  .scale-btn.sel-5 { background: #ffb0b0; color: #8a1010; }
-  .scale-desc {
-    font-size: 12px;
-    color: #888;
-    margin-top: 6px;
-    font-style: italic;
-    min-height: 18px;
-  }
-  .scale-labels {
-    display: flex;
-    justify-content: space-between;
-    width: 260px;
-    font-size: 10px;
-    color: #aaa;
-    margin-top: 4px;
-    font-family: 'Courier New', monospace;
-  }
+/* BUCKET */
+.bucket { background: #fff; border: 1px dashed #bbb; padding: 20px; margin-top: 8px; }
+.bucket label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 4px; color: #1a1a1a; }
+.bucket small { display: block; font-size: 12px; color: #888; font-style: italic; margin-bottom: 10px; }
+.bucket textarea {
+  width: 100%; min-height: 70px; padding: 10px 12px;
+  font-size: 13px; font-family: Georgia, serif;
+  border: 1px solid #d0c9bc; background: #f9f7f3;
+  color: #1a1a1a; resize: vertical; -webkit-appearance: none;
+}
+.bucket textarea:focus { outline: 2px solid #1a1a1a; }
+.bucket textarea::placeholder { color: #aaa; }
 
-  /* BUCKET */
-  .bucket {
-    background: #fff;
-    border: 1px dashed #bbb;
-    padding: 20px;
-    margin-top: 8px;
-  }
-  .bucket label {
-    display: block;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-  .bucket small {
-    display: block;
-    font-size: 12px;
-    color: #888;
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-  .bucket textarea {
-    width: 100%;
-    min-height: 70px;
-    padding: 10px 12px;
-    font-size: 13px;
-    font-family: Georgia, serif;
-    border: 1px solid #d0c9bc;
-    background: #f9f7f3;
-    color: #1a1a1a;
-    resize: vertical;
-  }
-  .bucket textarea:focus { outline: 2px solid #1a1a1a; }
+/* ONE THING */
+.one-thing { background: #1a1a1a; color: #f4f1ec; padding: 28px; margin-bottom: 24px; }
+.one-thing h2 { font-size: 19px; font-weight: normal; line-height: 1.5; margin-bottom: 10px; }
+.one-thing p { font-size: 13px; color: #aaa; margin-bottom: 16px; line-height: 1.6; }
+.one-thing textarea {
+  width: 100%; min-height: 90px; padding: 12px;
+  font-size: 13px; font-family: Georgia, serif;
+  background: #2e2e2e; border: 1px solid #555;
+  color: #f4f1ec; resize: vertical; -webkit-appearance: none;
+}
+.one-thing textarea:focus { outline: 2px solid #f4f1ec; }
+.one-thing textarea::placeholder { color: #666; }
+.one-thing small { display: block; font-size: 11px; color: #666; margin-top: 8px; font-style: italic; }
 
-  /* ONE THING */
-  .one-thing {
-    background: #1a1a1a;
-    color: #f4f1ec;
-    padding: 28px;
-    margin-bottom: 24px;
-  }
-  .one-thing h2 {
-    font-size: 20px;
-    font-weight: normal;
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-  .one-thing p {
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 16px;
-    line-height: 1.6;
-  }
-  .one-thing textarea {
-    width: 100%;
-    min-height: 90px;
-    padding: 12px;
-    font-size: 14px;
-    font-family: Georgia, serif;
-    background: #2e2e2e;
-    border: 1px solid #555;
-    color: #f4f1ec;
-    resize: vertical;
-  }
-  .one-thing textarea:focus { outline: 2px solid #f4f1ec; }
-  .one-thing textarea::placeholder { color: #666; }
-  .one-thing small {
-    display: block;
-    font-size: 11px;
-    color: #666;
-    margin-top: 8px;
-    font-style: italic;
-  }
+/* CLOSENESS */
+.closeness { background: #fff; border: 1px solid #d0c9bc; padding: 20px; margin-bottom: 32px; }
+.closeness label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 14px; color: #1a1a1a; }
+.closeness-list { display: flex; flex-direction: column; gap: 8px; }
+.closeness-btn {
+  padding: 10px 16px; border: 1px solid #d0c9bc; background: #f4f1ec;
+  text-align: left; font-size: 13px; font-family: Georgia, serif;
+  cursor: pointer; transition: background 0.1s; color: #1a1a1a;
+  -webkit-appearance: none; display: block; width: 100%;
+}
+.closeness-btn:hover { background: #e8e3da; }
+.closeness-btn.sel { background: #1a1a1a; color: #f4f1ec; border-color: #1a1a1a; }
 
-  /* CLOSENESS */
-  .closeness {
-    background: #fff;
-    border: 1px solid #d0c9bc;
-    padding: 20px;
-    margin-bottom: 32px;
-  }
-  .closeness label {
-    display: block;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 14px;
-  }
-  .closeness-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .closeness-btn {
-    padding: 10px 16px;
-    border: 1px solid #d0c9bc;
-    background: #f4f1ec;
-    text-align: left;
-    font-size: 13px;
-    font-family: Georgia, serif;
-    cursor: pointer;
-    transition: background 0.1s;
-  }
-  .closeness-btn:hover { background: #e8e3da; }
-  .closeness-btn.sel { background: #1a1a1a; color: #f4f1ec; border-color: #1a1a1a; }
+/* SUBMIT */
+.submit-btn {
+  width: 100%; padding: 16px; background: #1a1a1a; color: #f4f1ec; border: none;
+  font-size: 15px; font-family: Georgia, serif; cursor: pointer;
+  letter-spacing: 0.05em; transition: background 0.15s; -webkit-appearance: none;
+}
+.submit-btn:hover { background: #333; }
+.submit-btn:disabled { background: #aaa; cursor: not-allowed; }
+.sending-msg { display: none; text-align: center; padding: 14px; font-size: 13px; color: #888; font-style: italic; }
+.error-msg { display: none; background: #fff0f0; border: 1px solid #f7c1c1; padding: 12px 16px; font-size: 13px; color: #8a1010; margin-top: 12px; text-align: center; }
+.submit-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 10px; font-style: italic; }
 
-  /* SUBMIT */
-  .submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: #1a1a1a;
-    color: #f4f1ec;
-    border: none;
-    font-size: 15px;
-    font-family: Georgia, serif;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    transition: background 0.15s;
-  }
-  .submit-btn:hover { background: #333; }
+/* SUCCESS */
+.success { display: none; text-align: center; padding: 80px 20px; }
+.success h2 { font-size: 22px; font-weight: normal; margin-bottom: 12px; color: #1a1a1a; }
+.success p { font-size: 14px; color: #666; line-height: 1.7; }
 
-  /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid #d0c9bc;
-    margin: 40px 0;
-  }
-
-  @media (max-width: 480px) {
-    .scale-buttons { flex-wrap: nowrap; }
-    .scale-btn { width: 44px; height: 44px; font-size: 14px; }
-    .scale-labels { width: 220px; }
-  }
+@media (max-width: 500px) {
+  body { padding: 24px 16px 60px; }
+  .int-btn { width: 44px; height: 42px; font-size: 13px; }
+  .int-ends { width: 220px; }
+  .form-header h1 { font-size: 20px; }
+}
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="main">
 
-  <!-- HEADER -->
   <div class="form-header">
-    <h1>Formulario CCE <br>Probelmas Generales</h1>
-    <p>Para cada problema, marca cuanto te frena realmente.<br>No hay respuestas correctas. La respuesta mas honesta es la mas util. Menos de 5 minutos.</p>
+    <h1>Fromulario CCE<br>Problemas generales</h1>
+    <p>Para cada problema, marca cuanto te frena realmente. No hay respuestas correctas. La respuesta mas honesta es la mas util. Menos de 5 minutos.</p>
+    <span class="time-badge">5 minutos — 4 categorias</span>
   </div>
 
-  <!-- SCALE REFERENCE -->
+  <!-- ESCALA REFERENCIA -->
   <div class="scale-ref">
     <strong>Escala de referencia</strong>
     <div class="scale-ref-row">
@@ -346,274 +186,324 @@
     </div>
   </div>
 
-  <!-- SECTION A -->
+  <!-- CATEGORIA A -->
   <div class="section sec-a">
     <div class="section-header">
       <h2>A — Dudas sobre el modelo y la legalidad</h2>
       <p>Si el negocio es legitimo, legal y transparente</p>
-      <div class="hormozi-tags">
+      <div class="hz-tags">
         <span class="hz-tag">Probabilidad de logro</span>
         <span class="hz-tag">Resultado ideal</span>
       </div>
     </div>
 
-    <div class="question">
-      <span class="question-code">A1</span>
-      <p class="question-label">"He buscado en internet y dicen que es una estafa"</p>
-      <p class="question-hook">Este problema no solo genera duda en ti — hace que tus contactos tampoco confien cuando tu les presentas el negocio. Es el problema con mayor efecto multiplicador negativo.</p>
-      <div class="scale-instruction">Cuanto te frena — marca tu nivel</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'a1')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'a1')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'a1')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'a1')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'a1')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">A1</span>
+      <p class="q-text">"He buscado en internet y dicen que es una estafa"</p>
+      <p class="q-hook">Este problema no solo genera duda en ti — hace que tus contactos tampoco confien cuando tu les presentas el negocio. Es el problema con mayor efecto multiplicador negativo.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-pr">Probabilidad</span>
+        <span class="q-dim dim-ri">Resultado</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-a1"></div>
+      <div class="int-label">Cuanto te frena — marca tu nivel</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'a1',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'a1',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'a1',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'a1',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'a1',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-a1"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">A2</span>
-      <p class="question-label">"¿Esto es como Herbalife? ¿Es un esquema piramidal?"</p>
-      <p class="question-hook">La primera asociacion mental del avatar al escuchar "red de afiliados" es MLM o piramide. Esta creencia bloquea la escucha y hace imposible que vean el valor real del modelo.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'a2')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'a2')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'a2')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'a2')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'a2')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">A2</span>
+      <p class="q-text">"¿Esto es como Herbalife? ¿Es un esquema piramidal?"</p>
+      <p class="q-hook">La primera asociacion mental del avatar al escuchar "red de afiliados" es MLM o piramide. Esta creencia bloquea la escucha y hace imposible que vean el valor real del modelo.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-pr">Probabilidad</span>
+        <span class="q-dim dim-es">Esfuerzo mental</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-a2"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'a2',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'a2',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'a2',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'a2',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'a2',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-a2"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">A3</span>
-      <p class="question-label">"¿Puedo perder mi dinero? ¿Que pasa si la empresa cierra?"</p>
-      <p class="question-hook">El avatar tiene hijos y obligaciones. No puede permitirse una perdida. Aunque el monto sea pequeno, la pregunta de riesgo financiero activa un nivel de alerta que paraliza la decision.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'a3')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'a3')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'a3')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'a3')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'a3')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">A3</span>
+      <p class="q-text">"¿Puedo perder mi dinero? ¿Que pasa si la empresa cierra?"</p>
+      <p class="q-hook">El avatar tiene hijos y obligaciones. No puede permitirse una perdida. Aunque el monto sea pequeno, la pregunta de riesgo financiero activa un nivel de alerta que paraliza la decision.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-ri">Resultado</span>
+        <span class="q-dim dim-pr">Probabilidad</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-a3"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'a3',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'a3',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'a3',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'a3',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'a3',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-a3"></div>
     </div>
 
     <div class="bucket">
       <label>Cubo de basura — Modelo y legalidad</label>
       <small>¿Que otra duda sobre la legitimidad del negocio te quita el sueno y no hemos mencionado?</small>
-      <textarea placeholder="Escribe con total libertad..."></textarea>
+      <textarea id="bucket_a" placeholder="Escribe con total libertad..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- SECTION B -->
+  <!-- CATEGORIA B -->
   <div class="section sec-b">
     <div class="section-header">
       <h2>B — Barreras tecnicas y operativas</h2>
       <p>Usar la plataforma, cobrar comisiones y gestionar el negocio</p>
-      <div class="hormozi-tags">
+      <div class="hz-tags">
         <span class="hz-tag">Esfuerzo y sacrificio</span>
         <span class="hz-tag">Tiempo al resultado</span>
       </div>
     </div>
 
-    <div class="question">
-      <span class="question-code">B1</span>
-      <p class="question-label">"No entiendo como comprar paquetes en Corsair Connect ni como funciona el pago con USDC"</p>
-      <p class="question-hook">El proceso tecnico de compra filtra a casi todo el avatar de 40-55 anos. Si tus contactos tampoco pueden comprar solos, el sistema muere en este punto.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'b1')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'b1')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'b1')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'b1')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'b1')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">B1</span>
+      <p class="q-text">"No entiendo como comprar paquetes en Corsair Connect ni como funciona el pago con USDC"</p>
+      <p class="q-hook">El proceso tecnico de compra filtra a casi todo el avatar de 40-55 anos. Si tus contactos tampoco pueden comprar solos, el sistema muere en este punto.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-es">Esfuerzo</span>
+        <span class="q-dim dim-ti">Tiempo</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-b1"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'b1',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'b1',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'b1',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'b1',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'b1',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-b1"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">B2</span>
-      <p class="question-label">"No se como retirar mi dinero. No entiendo donde estan mis comisiones ni como cobrarlas"</p>
-      <p class="question-hook">Si el dinero esta en "algun sitio" pero no sabes como sacarlo a tu cuenta bancaria, el resultado sonado se vuelve abstracto. Es el mayor destructor de credibilidad una vez que ya has vendido.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'b2')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'b2')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'b2')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'b2')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'b2')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">B2</span>
+      <p class="q-text">"No se como retirar mi dinero. No entiendo donde estan mis comisiones ni como cobrarlas"</p>
+      <p class="q-hook">Si el dinero esta en "algun sitio" pero no sabes como sacarlo a tu cuenta bancaria, el resultado sonado se vuelve abstracto. Es el mayor destructor de credibilidad una vez que ya has vendido.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-es">Esfuerzo</span>
+        <span class="q-dim dim-ri">Resultado</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-b2"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'b2',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'b2',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'b2',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'b2',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'b2',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-b2"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">B3</span>
-      <p class="question-label">"Me siento perdido en la plataforma — no se que pasos seguir, que hacer primero ni como avanzar"</p>
-      <p class="question-hook">Sin un camino claro, el avatar no tiene tiempo de explorar. Necesita saber exactamente que hacer en los proximos 10 minutos. Sin esto, cierra la app y no vuelve.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'b3')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'b3')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'b3')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'b3')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'b3')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">B3</span>
+      <p class="q-text">"Me siento perdido en la plataforma — no se que pasos seguir, que hacer primero ni como avanzar"</p>
+      <p class="q-hook">Sin un camino claro, el avatar no tiene tiempo de explorar. Necesita saber exactamente que hacer en los proximos 10 minutos. Sin esto, cierra la app y no vuelve.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-ti">Tiempo</span>
+        <span class="q-dim dim-es">Esfuerzo</span>
+        <span class="q-dim dim-pr">Probabilidad</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-b3"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'b3',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'b3',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'b3',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'b3',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'b3',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-b3"></div>
     </div>
 
     <div class="bucket">
       <label>Cubo de basura — Tecnica y operativa</label>
-      <small>¿Que otra barrera tecnica te quita el sueno y no hemos mencionado? Puede ser algo muy concreto.</small>
-      <textarea placeholder="Un boton que no funciona, un paso que no entiendes, algo que nadie te explico..."></textarea>
+      <small>¿Que otra barrera tecnica te quita el sueno y no hemos mencionado?</small>
+      <textarea id="bucket_b" placeholder="Un boton que no funciona, un paso que no entiendes, algo que nadie te explico..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- SECTION C -->
+  <!-- CATEGORIA C -->
   <div class="section sec-c">
     <div class="section-header">
       <h2>C — Dudas sobre los creditos de plastico (CSR26)</h2>
       <p>Que son, si tienen valor real y como usarlos o venderlos</p>
-      <div class="hormozi-tags">
+      <div class="hz-tags">
         <span class="hz-tag">Resultado ideal</span>
         <span class="hz-tag">Probabilidad de logro</span>
         <span class="hz-tag">Tiempo al resultado</span>
       </div>
     </div>
 
-    <div class="question">
-      <span class="question-code">C1</span>
-      <p class="question-label">"¿A quien le vendo mis CSR26? ¿Hay un mercado real o me los quedo para siempre?"</p>
-      <p class="question-hook">Si no existe certeza sobre un comprador real o un mercado accesible, el activo que tienes en tu wallet es percibido como papel mojado. Este es el mayor destructor del resultado percibido.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'c1')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'c1')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'c1')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'c1')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'c1')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">C1</span>
+      <p class="q-text">"¿A quien le vendo mis CSR26? ¿Hay un mercado real o me los quedo para siempre?"</p>
+      <p class="q-hook">Si no existe certeza sobre un comprador real o un mercado accesible, el activo que tienes en tu wallet es percibido como papel mojado. Este es el mayor destructor del resultado percibido.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-ri">Resultado</span>
+        <span class="q-dim dim-pr">Probabilidad</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-c1"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'c1',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'c1',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'c1',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'c1',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'c1',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-c1"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">C2</span>
-      <p class="question-label">"¿Se elimina el plastico de verdad? ¿Como se que no es un invento para justificar el negocio?"</p>
-      <p class="question-hook">Si el servicio subyacente no es verificable, todo el modelo se percibe como especulativo. Es tambien el argumento mas dificil de rebatir ante los contactos que preguntan.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'c2')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'c2')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'c2')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'c2')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'c2')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">C2</span>
+      <p class="q-text">"¿Se elimina el plastico de verdad? ¿Como se que no es un invento para justificar el negocio?"</p>
+      <p class="q-hook">Si el servicio subyacente no es verificable, todo el modelo se percibe como especulativo. Es tambien el argumento mas dificil de rebatir ante los contactos que preguntan.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-pr">Probabilidad</span>
+        <span class="q-dim dim-ri">Resultado</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-c2"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'c2',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'c2',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'c2',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'c2',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'c2',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-c2"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">C3</span>
-      <p class="question-label">"¿Cuando puedo vender mis CSR26? ¿Hay bloqueo temporal? ¿Cuanto tengo que esperar para recuperar mi dinero?"</p>
-      <p class="question-hook">El avatar no puede permitirse inversiones a largo plazo con fecha incierta. Cualquier ambiguedad sobre la liquidez convierte el activo en una trampa percibida, no en una oportunidad.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'c3')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'c3')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'c3')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'c3')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'c3')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">C3</span>
+      <p class="q-text">"¿Cuando puedo vender mis CSR26? ¿Hay bloqueo temporal? ¿Cuanto tengo que esperar para recuperar mi dinero?"</p>
+      <p class="q-hook">El avatar no puede permitirse inversiones a largo plazo con fecha incierta. Cualquier ambiguedad sobre la liquidez convierte el activo en una trampa percibida, no en una oportunidad.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-ti">Tiempo</span>
+        <span class="q-dim dim-ri">Resultado</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-c3"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'c3',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'c3',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'c3',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'c3',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'c3',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-c3"></div>
     </div>
 
     <div class="bucket">
       <label>Cubo de basura — Creditos CSR26</label>
       <small>¿Que otra duda sobre los creditos de plastico o el servicio de eliminacion te quita el sueno?</small>
-      <textarea placeholder="Puede ser algo que nadie te ha respondido satisfactoriamente sobre los CSR26..."></textarea>
+      <textarea id="bucket_c" placeholder="Puede ser algo que nadie te ha respondido satisfactoriamente sobre los CSR26..."></textarea>
     </div>
   </div>
 
   <hr class="divider">
 
-  <!-- SECTION D -->
+  <!-- CATEGORIA D -->
   <div class="section sec-d">
     <div class="section-header">
       <h2>D — Capacidad personal y social</h2>
       <p>Creencias sobre tu propia capacidad de vender, explicar y convencer a otros</p>
-      <div class="hormozi-tags">
+      <div class="hz-tags">
         <span class="hz-tag">Esfuerzo y sacrificio</span>
         <span class="hz-tag">Probabilidad de logro</span>
       </div>
     </div>
 
-    <div class="question">
-      <span class="question-code">D1</span>
-      <p class="question-label">"Yo no se vender. Me da verguenza hablar de dinero o de negocios. Tengo miedo al rechazo."</p>
-      <p class="question-hook">Esta es la creencia limitante mas frecuente y mas dificil de resolver con formacion. No es un problema de informacion — es identitario. El avatar no se ve a si mismo como alguien que vende.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'d1')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'d1')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'d1')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'d1')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'d1')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">D1</span>
+      <p class="q-text">"Yo no se vender. Me da verguenza hablar de dinero o de negocios. Tengo miedo al rechazo."</p>
+      <p class="q-hook">Esta es la creencia limitante mas frecuente y mas dificil de resolver con formacion. No es un problema de informacion — es identitario. El avatar no se ve a si mismo como alguien que vende.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-es">Esfuerzo emocional</span>
+        <span class="q-dim dim-pr">Probabilidad</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-d1"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'d1',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'d1',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'d1',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'d1',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'d1',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-d1"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">D2</span>
-      <p class="question-label">"No se como explicar el negocio. Cuando lo intento, la gente no lo entiende o me dice que no le interesa."</p>
-      <p class="question-hook">Si el afiliado no puede articular el valor con sus propias palabras, depende al 100% de que el contacto vea el video. La incapacidad de explicarlo genera tambien verguenza que paraliza mas contactos futuros.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'d2')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'d2')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'d2')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'d2')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'d2')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">D2</span>
+      <p class="q-text">"No se como explicar el negocio. Cuando lo intento, la gente no lo entiende o me dice que no le interesa."</p>
+      <p class="q-hook">Si el afiliado no puede articular el valor con sus propias palabras, depende al 100% de que el contacto vea el video. La incapacidad de explicarlo genera tambien verguenza que paraliza mas contactos futuros.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-es">Esfuerzo</span>
+        <span class="q-dim dim-pr">Probabilidad</span>
+        <span class="q-dim dim-ti">Tiempo</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-d2"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'d2',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'d2',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'d2',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'d2',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'d2',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-d2"></div>
     </div>
 
-    <div class="question">
-      <span class="question-code">D3</span>
-      <p class="question-label">"No tengo dinero para invertir ni para comprar el paquete minimo. Necesito ganar dinero antes de poder gastar."</p>
-      <p class="question-hook">Mas alla del dinero, este problema esconde una creencia mas profunda: "si no invierto mas, no podre ganar en serio". Romper esto es clave para la activacion.</p>
-      <div class="scale-instruction">Cuanto te frena</div>
-      <div class="scale-buttons">
-        <button class="scale-btn" onclick="pick(this,'d3')" data-v="1">1</button>
-        <button class="scale-btn" onclick="pick(this,'d3')" data-v="2">2</button>
-        <button class="scale-btn" onclick="pick(this,'d3')" data-v="3">3</button>
-        <button class="scale-btn" onclick="pick(this,'d3')" data-v="4">4</button>
-        <button class="scale-btn" onclick="pick(this,'d3')" data-v="5">5</button>
+    <div class="q">
+      <span class="q-code">D3</span>
+      <p class="q-text">"No tengo dinero para invertir ni para comprar el paquete minimo. Necesito ganar dinero antes de poder gastar."</p>
+      <p class="q-hook">Mas alla del dinero, este problema esconde una creencia mas profunda: "si no invierto mas, no podre ganar en serio". Romper esto es clave para la activacion.</p>
+      <div class="q-dims">
+        <span class="q-dim dim-ri">Resultado</span>
+        <span class="q-dim dim-pr">Probabilidad</span>
       </div>
-      <div class="scale-labels"><span>No me preocupa</span><span>Me hace abandonar</span></div>
-      <div class="scale-desc" id="d-d3"></div>
+      <div class="int-label">Cuanto te frena</div>
+      <div class="int-row">
+        <button class="int-btn" onclick="pick(this,'d3',1)">1</button>
+        <button class="int-btn" onclick="pick(this,'d3',2)">2</button>
+        <button class="int-btn" onclick="pick(this,'d3',3)">3</button>
+        <button class="int-btn" onclick="pick(this,'d3',4)">4</button>
+        <button class="int-btn" onclick="pick(this,'d3',5)">5</button>
+      </div>
+      <div class="int-ends"><span>No me preocupa</span><span>Me hace abandonar</span></div>
+      <div class="int-desc" id="d-d3"></div>
     </div>
 
     <div class="bucket">
       <label>Cubo de basura — Capacidad personal</label>
       <small>¿Que creencia sobre ti mismo o tu entorno te impide avanzar y no hemos mencionado aqui?</small>
-      <textarea placeholder="Puede ser algo que sientes pero que nunca has verbalizado sobre por que esto no funcionara para alguien como tu..."></textarea>
+      <textarea id="bucket_d" placeholder="Puede ser algo que sientes pero que nunca has verbalizado sobre por que esto no funcionara para alguien como tu..."></textarea>
     </div>
   </div>
 
@@ -623,14 +513,14 @@
   <div class="one-thing">
     <h2>Si manana hicieramos una videollamada para solucionar solo UN problema que te impide ganar tus primeros $600... ¿cual seria?</h2>
     <p>Lo primero que venga a tu cabeza es lo correcto. No tiene que ser racional. Puede ser un miedo, una duda, un bloqueo o algo que no has podido resolver solo.</p>
-    <textarea placeholder="Escribe aqui tu unica cosa..."></textarea>
+    <textarea id="one_thing" placeholder="Escribe aqui tu unica cosa..."></textarea>
     <small>Esta respuesta es la mas importante de todo el formulario.</small>
   </div>
 
   <!-- CLOSENESS -->
   <div class="closeness">
     <label>Antes de terminar — ¿como de cerca estas de ganar tus primeros $600?</label>
-    <div class="closeness-options">
+    <div class="closeness-list">
       <button class="closeness-btn" onclick="pickClose(this)">No he empezado todavia</button>
       <button class="closeness-btn" onclick="pickClose(this)">Empece pero me estanque</button>
       <button class="closeness-btn" onclick="pickClose(this)">Estoy en proceso activo</button>
@@ -638,37 +528,101 @@
     </div>
   </div>
 
-  <button class="submit-btn" onclick="submitForm()">Enviar respuestas</button>
+  <button class="submit-btn" id="submitBtn" onclick="enviar()">Enviar mis respuestas</button>
+  <div class="sending-msg" id="sendingMsg">Enviando tus respuestas...</div>
+  <div class="error-msg" id="errorMsg">Hubo un error al enviar. Por favor intentalo de nuevo.</div>
+  <p class="submit-note">Tus respuestas son anonimas y se usan solo para mejorar el sistema.</p>
 
 </div>
 
+<div class="success" id="success">
+  <h2>Muchas gracias.</h2>
+  <p>Tus respuestas nos llegan directamente y las usaremos para mejorar el sistema.<br><br>Estaremos en contacto contigo muy pronto.</p>
+</div>
+
 <script>
-const DESCS = {
-  1: "Duda pequena — no te impide avanzar",
-  2: "Te ralentiza un poco",
-  3: "Freno importante — vas mas despacio",
-  4: "Te paraliza casi por completo",
-  5: "FRENO TOTAL — esto te haria abandonar"
+// ─── PON AQUI TU URL DE APPS SCRIPT ──────────────────────────────────────
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxReIPs3g_LxC4bQyAJEfXHwdKmF9GLNtKwrBS0_NhXkahlvd02tSvmv4PJPy9hoOwQ/exec';
+// ─────────────────────────────────────────────────────────────────────────
+
+// Texto para cada valor de la escala
+const SCALE_LABELS = {
+  1: 'Duda pequeña — no me impide avanzar',
+  2: 'Me ralentiza un poco',
+  3: 'Freno importante — me hace ir mas despacio',
+  4: 'Me paraliza casi por completo',
+  5: 'Freno total — si no resuelvo esto, abandono'
 };
 
-function pick(btn, id) {
-  const v = parseInt(btn.dataset.v);
-  const parent = btn.closest('.scale-buttons');
-  parent.querySelectorAll('.scale-btn').forEach(b => {
-    b.classList.remove('sel-1','sel-2','sel-3','sel-4','sel-5');
-  });
-  btn.classList.add('sel-' + v);
+const R = {};
+
+function pick(btn, id, v) {
+  const row = btn.closest('.int-row');
+  row.querySelectorAll('.int-btn').forEach(b => b.classList.remove('v1','v2','v3','v4','v5'));
+  btn.classList.add('v' + v);
   const desc = document.getElementById('d-' + id);
-  if (desc) desc.textContent = DESCS[v];
+  if (desc) desc.textContent = SCALE_LABELS[v];
+  // Guardar el texto, no el numero
+  R[id] = SCALE_LABELS[v];
 }
 
 function pickClose(btn) {
   document.querySelectorAll('.closeness-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
+  R['cercania_objetivo'] = btn.textContent.trim();
 }
 
-function submitForm() {
-  alert('Respuestas enviadas. Gracias por tu tiempo.');
+function collectTextFields() {
+  const campos = {
+    'bucket_a': 'cubo_modelo_legal',
+    'bucket_b': 'cubo_tecnica_operativa',
+    'bucket_c': 'cubo_csr26',
+    'bucket_d': 'cubo_capacidad_personal',
+    'one_thing': 'one_thing'
+  };
+  Object.keys(campos).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) R[campos[id]] = el.value.trim();
+  });
+}
+
+function enviar() {
+  collectTextFields();
+
+  const btn = document.getElementById('submitBtn');
+  const sending = document.getElementById('sendingMsg');
+  const errMsg = document.getElementById('errorMsg');
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  sending.style.display = 'block';
+  errMsg.style.display = 'none';
+
+  R['timestamp'] = new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' });
+  R['formulario'] = 'Mapa de Calor del Dolor CCE';
+
+  const callbackName = 'cb_' + Date.now();
+  const scriptEl = document.createElement('script');
+
+  window[callbackName] = function(response) {
+    delete window[callbackName];
+    if (document.body.contains(scriptEl)) document.body.removeChild(scriptEl);
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+    window.scrollTo(0, 0);
+  };
+
+  scriptEl.onerror = function() {
+    delete window[callbackName];
+    btn.disabled = false;
+    btn.textContent = 'Enviar mis respuestas';
+    sending.style.display = 'none';
+    errMsg.style.display = 'block';
+  };
+
+  const params = encodeURIComponent(JSON.stringify(R));
+  scriptEl.src = APPS_SCRIPT_URL + '?callback=' + callbackName + '&data=' + params;
+  document.body.appendChild(scriptEl);
 }
 </script>
 </body>
